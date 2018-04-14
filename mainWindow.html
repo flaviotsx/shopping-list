@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Test Electron</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<style>
+		body{
+			background-color: #404552;
+			padding: 10px;
+			color: #222;
+			font-size: 1.5rem;
+		}
+		nav{
+			height: 10vh;
+			color: #eee;
+			font-size: 2.5rem;
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav class="nav justify-content-center bg-info fixed-top">
+		<div class="">
+			<a class="">Sopping List</a>
+		</div>
+	</nav>
+	<br />
+	<br />
+	<ul class="list-group">
+	</ul>
+
+	<script type="text/javascript">
+		const electron = require('electron');
+		const {ipcRenderer} = electron;
+		const ul = document.querySelector('ul');
+
+		// Catch add Item
+		ipcRenderer.on('item:add', (e, item) => {
+			const li = document.createElement('li');
+			const itemText = document.createTextNode(item);
+			li.appendChild(itemText);
+			li.className ='list-group-item';
+			ul.appendChild(li);
+		});
+
+		// Catch clear Item
+		ipcRenderer.on('item:clear', () => {
+			ul.innerHTML = '';
+		});
+
+		// Remove item
+		ul.addEventListener('dblclick', removeItem);
+
+		function removeItem(e){
+			e.target.remove();
+		}
+
+	</script>
+
+</body>
+</html>
