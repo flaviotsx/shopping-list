@@ -9,3 +9,7 @@ Afterwords, you must run this command: `npm install` to download all the depende
 Okay?
 
 Now you can run the `npm start` command to run it by development stage or some of these customized commands `npm run package-win`, `npm run package-linux` and `npm run package-mac` to build the application to your Windows, Linux and Mac.
+
+Everything running good? 
+
+### Cheers!!
